@@ -1,0 +1,39 @@
+library ieee;
+use ieee.std_logic_1164.all;
+use ieee.numeric_std.all; 
+
+entity simpleCounter is
+  port (
+    clk1 : inout std_logic;
+    x : out signed; 
+
+  ); 
+  ---- the output in port section does not have ; 
+end simpleCounter;
+
+architecture arch of simpleCounter is
+
+begin
+
+  process is 
+    begin 
+
+      clk1 <= not clk1; 
+      wait for 10 ns;  
+
+  end process; 
+
+
+  process(clk1) is 
+    variable c1 : unsigned(31 downto 0); 
+    begin 
+
+      if rising_edge (clk1) then 
+        c1 := c1+1;  
+      end if; 
+      x  <= c1; 
+    end process;
+
+
+
+end architecture ; -- simpleCounter
